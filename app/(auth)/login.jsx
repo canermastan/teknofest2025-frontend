@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontFamily: fonts.SemiBold,
     marginVertical: 10,
+    textDecorationLine:'underline'
   },
   loginButtonWrapper: {
     backgroundColor: colors.primary,
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     fontSize: 14,
     fontFamily: fonts.Regular,
-    color: colors.primary,
+    color: colors.black,
   },
   googleButtonContainer: {
     flexDirection: "row",
@@ -188,11 +189,12 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   accountText: {
-    color: colors.primary,
+    color: colors.black,
     fontFamily: fonts.Regular,
   },
   signupText: {
     color: colors.primary,
     fontFamily: fonts.Bold,
+    textDecorationLine:'underline',
   },
 });
