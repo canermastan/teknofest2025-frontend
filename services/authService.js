@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/auth";
+const AUTH_URL = `${API_URL.JAVA}/auth`
 
 export default class AuthService {
     login(email, password) {
