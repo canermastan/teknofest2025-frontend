@@ -3,6 +3,7 @@ import { StyleSheet, Image, Modal, FlatList } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { Button, Colors, Text, TextField, View } from 'react-native-ui-lib';
 import * as Location from 'expo-location';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 export default function HomeScreen() {
 
@@ -44,6 +45,8 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.inputContainer}>
         <TextField
           placeholder="Yer ara..."
           hideUnderline
@@ -51,6 +54,8 @@ export default function HomeScreen() {
           onChangeText={(text) => console.log(text)}
           editable={true}
         />
+        </View>
+        </TouchableWithoutFeedback>
         <Button
           label="Ara"
           backgroundColor={Colors.blue30}
@@ -65,7 +70,7 @@ export default function HomeScreen() {
         <Marker
           coordinate={{ latitude: region.latitude, longitude: region.longitude }}
           onPress={() => handleMarkerPress({
-            title: "Burayı gezmelisiniz 😋",
+            title: "Burayı gezmelisiniz 🙂",
             description: "Anıtkabir",
             images: [
               'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/253f/live/65fa18b0-7fa3-11ee-a503-4588075e3427.jpg.webp',
@@ -88,6 +93,12 @@ export default function HomeScreen() {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
+          <View style={styles.mascotContainer}>
+            <Image
+              source={require('../../assets/mascot.png')}
+              style={styles.mascot}
+            />
+          </View>
           <View style={styles.modalContent}>
             {selectedPlace && (
               <>
@@ -155,12 +166,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  searchBox: {
-    flex: 1,
-    fontSize: 16,
-    height: 30,
-    paddingHorizontal: 10,
-  },
   helpButton: {
     marginLeft: 10,
   },
@@ -175,6 +180,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: 10,
     padding: 20,
+  },
+  inputContainer: {
+    flex: 1,
+    borderRadius: 5,
+    marginRight: 10,
+    height: 35,
+    justifyContent: 'center',
   },
   image: {
     width: 100,
@@ -215,5 +227,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: Colors.grey80,
     borderWidth: 0.8
+  },
+  mascotContainer: {
+    position: 'absolute',
+    top: 126,
+    left: -5,
+    width: 150,
+    height: 150,
+    overflow: 'hidden',
+  },
+  mascot: {
+    width: 150,
+    height: 250,
+    resizeMode: 'cover',
+    transform: [{ translateY: 10 }],
   },
 });
